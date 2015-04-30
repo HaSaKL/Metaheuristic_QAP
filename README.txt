@@ -14,3 +14,8 @@ cmake ..
 make
 
 An example Problem from Quadratic Assignment Problem Library (http://anjos.mgi.polymtl.ca/qaplib/) can be found in the folder ($project_folder)/application (NOT! in build/application!)
+
+To call applications do from project folder
+
+cd build/applications
+./QAP/.QAP_test -p="../../application/chr12a.dat"
