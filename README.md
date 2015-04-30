@@ -1,1 +1,0 @@
-# Metaheuristic_QAP
