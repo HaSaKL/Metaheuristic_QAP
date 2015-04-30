@@ -1,0 +1,2 @@
+/home/hagen/prog/dev/Metaheuristic_QAP/build/application/CMakeFiles/QAP_test.dir
+/home/hagen/prog/dev/Metaheuristic_QAP/build/doc/CMakeFiles/doc.dir

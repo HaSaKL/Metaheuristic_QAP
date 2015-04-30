@@ -1,0 +1,10 @@
+
+### GENERAL ########################################################################
+# --help=0                                 # -h : Prints this message
+# --stopOnUnknownParam=1                   # Stop if unkown param entered
+
+### PARAM ##########################################################################
+# --ProblemFile=chr12a.dat                 # -p : Path of the problem file
+
+### PERSISTENCE ####################################################################
+# --status=./QAP_test.status               # Status file
