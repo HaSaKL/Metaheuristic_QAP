@@ -11,6 +11,7 @@ set(QAP_SOURCES
 		QAPInit.h
 		QAPSwapNeighbor.h
 		QAPSwapNeighborhood.h
+		QAPSwapIncrEval.h
 		)
 
 #add_library(lQAP STATIC ${QAP_SOURCES})

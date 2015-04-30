@@ -1,12 +1,12 @@
 #ifndef QAPSwapNeighborhood_H
 #define QAPSwapNeighborhood_H
 
+#include <mo>
 #include <QAP.h>
 #include <QAPSwapNeighbor.h>
 #include <neighborhood/moNeighborhood.h>
 
-template <class EOT, class Fitness = typename EOT::Fitness>
-class QAPSwapNeighborhood : public moNeighborhood<QAPSwapNeighbor<EOT, Fitness> >{
+class QAPSwapNeighborhood : public moNeighborhood<QAPSwapNeighbor>{
 private:
 	// A pair which represents a Swap-Operation
 	std::pair<unsigned int, unsigned int> indices;
@@ -18,13 +18,13 @@ public:
 		return (_solution.getProbSize() > 1);
 	}
 	
-	void init(QAP_Problem & _solution, QAPSwapNeighbor<EOT, Fitness> & _current) {
+	void init(QAP_Problem & _solution, QAPSwapNeighbor & _current) {
 		indices.first = 0;
 		indices.second = 1;
 		_current.setIndices(0, 1);
 	}
 
-	void next(QAP_Problem & _solution, QAPSwapNeighbor<EOT, Fitness> & _current) {
+	void next(QAP_Problem & _solution, QAPSwapNeighbor & _current) {
 		if (indices.second == _solution.getProbSize()-1){
 			indices.first++;
 			indices.second = indices.first+1;

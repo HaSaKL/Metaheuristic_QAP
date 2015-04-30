@@ -4,17 +4,12 @@
 #include <QAP.h>
 #include <neighborhood/moNeighbor.h>
 
-// A very basic Neighbor, just consiting of a single
+// A very basic Neighbor for the QAP_Problem, just consiting of a single
 // switch of to Solution Elements, which are represented
 // by a std::pair 
-template<class EOT, class Fitness = typename EOT::Fitness>
-class QAPSwapNeighbor: public moNeighbor<EOT, Fitness> {
-	/* FIXME: This class needs:
-	 * - move method
-	 * - setIndices method
-	 * - getIndices mehtod
-	 * - equals methods
-	 */
+
+class QAPSwapNeighbor: public moNeighbor<QAP_Problem, typename QAP_Problem::Fitness> {
+	
 private:
 	// A pair which represents the desired SwapOperation
 	// which makes up the Neighbor

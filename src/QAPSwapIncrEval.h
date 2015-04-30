@@ -7,7 +7,7 @@
 #include <QAPSwapNeighbor.h>
 
 // This is also already realized in mo/problems/eval/moQAPIncrEval.h, copy to better understand what is happening
-class QAPSwapIncrEval: public moEval<QAPSwapNeighbor<QAP_Problem > > {
+class QAPSwapIncrEval: public moEval<QAPSwapNeighbor> {
 private:
 	// values / pointers from Problem class
 	int n;
@@ -15,7 +15,7 @@ private:
 	int ** B;
 	
 public:
-	typedef typename QAPSwapNeighbor<QAP_Problem>::EOT EOT;
+	typedef typename QAPSwapNeighbor::EOT EOT;
 	//typedef typename Neighbor::EOT EOT;
 
 	// default constructor -> get Problem values for Evaluation
@@ -25,7 +25,7 @@ public:
 		B = _problem.getB();
 	}
 	
-	void operator() (EOT & _solution, QAPSwapNeighbor<QAP_Problem> & _neighbor) {
+	void operator() (EOT & _solution, QAPSwapNeighbor & _neighbor) {
 		
 		int delta;
 		unsigned int k;

@@ -4,6 +4,7 @@
 #include <QAPInit.h>
 #include <QAPSwapNeighbor.h>
 #include <QAPSwapNeighborhood.h>
+#include <QAPSwapIncrEval.h>
 
 //checks for help demand and writes the status file and make_help
 void make_help(eoParser & _parser);
@@ -35,8 +36,8 @@ int main(int argc, char* argv[])
 		
 		// load problem
 		QAP_Problem p(PROBLEM_FILE);
-		// defini evaluation function
-		QAPEval problem_eval;
+		// defini evaluation functions
+		QAPEval<QAP_Problem> problem_eval;
 		// initialize problem randomly
 		p.RandomInit();
 		// evaluate random solution
@@ -47,8 +48,8 @@ int main(int argc, char* argv[])
 		
 		
 		// define Neighborhood and a Neighbor
-		QAPSwapNeighbor<QAP_Problem> n1;
-		QAPSwapNeighborhood<QAP_Problem> nh;
+		QAPSwapNeighbor n1;
+		QAPSwapNeighborhood nh;
 		
 		// initialize neighborhood
 		nh.init(p, n1);
@@ -57,26 +58,24 @@ int main(int argc, char* argv[])
 		n1.print();
 		
 		
+		// initialize Incremental Evaluation
+		QAPSwapIncrEval neighbor_eval(p);
+		
+		// calculate new fitness with incremental evaluation
+		neighbor_eval(p, n1);
+		std::cout << "New Fitness should be: " << n1 << std::endl << std::endl;
+		
+		
+		std::cout << "Performing Swap ........" << std::endl;
 		// do the swap
 		n1.move(p);
-		//FIXME: Now define an incremental evaluator!
-		// this way not all swps need to be made before evaluation
-		// if nothing els works use FullEvalCopy...
-		
+	
+		// calculate doing full Evla
 		problem_eval(p);
 		p.printSolution();
-		std::cout << "New Fitness : " << p.fitness() << std::endl << std::endl;
+		std::cout << "New Fitness is: " << p.fitness() << std::endl << std::endl;
 		
-		nh.next(p,n1);
-		std::cout << "Next possible Swap: ";
-		n1.print();
 		
-		n1.move(p);
-		problem_eval(p);
-		p.printSolution();
-		std::cout << "New Fitness : " << p.fitness() << std::endl << std::endl;
-		
-		// After all parameters are read, offer help if needed
         make_help(parser);
 	}
 	

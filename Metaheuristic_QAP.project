@@ -17,6 +17,7 @@
     <File Name="src/QAPInit.h"/>
     <File Name="src/QAPSwapNeighbor.h"/>
     <File Name="src/QAPSwapNeighborhood.h"/>
+    <File Name="src/QAPSwapIncrEval.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="test">
     <File Name="test/CMakeLists.txt"/>
