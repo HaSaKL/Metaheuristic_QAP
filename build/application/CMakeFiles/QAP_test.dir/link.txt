@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/QAP_test.dir/qap_test.cpp.o  -o QAP_test -rdynamic /usr/local/lib64/libmoeo.a /usr/local/lib64/libeoutils.a /usr/local/lib64/libeo.a 
