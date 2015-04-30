@@ -18,7 +18,6 @@ private:
 public:
 	// realise the move
 	void move(QAP_Problem & _solution) {
-		//FIXME: Can this be realized using std::swap?
 		std::swap(_solution[indices.first], _solution[indices.second]);
 		_solution.invalidate();
 	}

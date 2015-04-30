@@ -6,12 +6,11 @@
 
 // use template for Problem type (EOT), so other 
 // objectives besides minimization are also possible
-template< class EOT>
-class QAPEval : public eoEvalFunc <EOT>
+class QAPEval : public eoEvalFunc <QAP_Problem>
 {
 		
 public:
-	void operator() (EOT & _problem)
+	void operator() (QAP_Problem & _problem)
 	{
 		_problem.fullEvaluation();
 	}

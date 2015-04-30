@@ -41,6 +41,14 @@ public:
 	// as permutation of location number
 	int* solution;
 	
+	// default Constructor, nothing is set
+	QAP_Problem() : EO<eoMinimizingFitness>() { 
+		n = 0;
+		A = 0;
+		B = 0;
+		solution = 0;
+	}
+	
 	// Constructor
 	QAP_Problem(std::string & _fileData) {
 		
@@ -162,6 +170,10 @@ public:
 		}
 	}
 	
+	/*QAP_Problem::Fitness QAP_Problem() {
+		return (*this).Fitness;
+	}*/
+	
 	// copy assignemnt Operator
 	// if existing object is assigend to value of current object
 	void operator= (QAP_Problem & _problem) {
@@ -214,12 +226,18 @@ public:
 		}
 	}
 	
+	/*
+	void QAP_Problem() {
+		return (*this).Fitness;
+	}
+	 */
+	
 	// subscripting operator acesses solution array, needed to copy solution
 	int& operator[] (unsigned i) {
 		return solution[i];
 	}
 	
-	// get the matrix A (distance matrix)
+	// get the matrix A (distance matrix) 
 	int** getA() {
 		return A;
 	}

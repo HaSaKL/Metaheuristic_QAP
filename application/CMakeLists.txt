@@ -2,10 +2,11 @@ include_directories(${PARADISEO_INCLUDE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 add_executable(QAP_test qap_test.cpp)
-#add_dependencies(QAP_test lQAP)
+add_executable(QAP_TS qap_TS.cpp)
+		
 
-# Only if you need to link libraries
 target_link_libraries(QAP_test ${PARADISEO_LIBRARIES})
+target_link_libraries(QAP_TS ${PARADISEO_LIBRARIES})
 
 
 ######################################################################################

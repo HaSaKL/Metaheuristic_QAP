@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 		// load problem
 		QAP_Problem p(PROBLEM_FILE);
 		// defini evaluation functions
-		QAPEval<QAP_Problem> problem_eval;
+		QAPEval problem_eval;
 		// initialize problem randomly
 		p.RandomInit();
 		// evaluate random solution

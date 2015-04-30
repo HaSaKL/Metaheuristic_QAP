@@ -5,7 +5,7 @@
 #include <eoInt.h>
  
 // define initialization class, derive from eoInit
-class ProblemInit : public eoInit<QAP_Problem>
+class QAPInit : public eoInit<QAP_Problem>
 {
 public:
 	void operator() (QAP_Problem & _problem) {
