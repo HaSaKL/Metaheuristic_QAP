@@ -29,3 +29,6 @@
 
 # IDE Project file 
 *.project
+
+# build folder
+build/
