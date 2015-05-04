@@ -22,6 +22,10 @@ class QAP_Problem : public EO<eoMinimizingFitness>
 {
 	// FIXME: Could be easier, if instead of array and pointers a standard container (array, vector) would be used
 	// this would reduce the code for copying the Matrices for a copy or assignment significantly
+	// Could also be improved by defining a private fuction for matrix construction and deletion, which is then called 
+	// by the constructors and the destructor. In this implementation this code is duplicate and therfore error probe when
+	// changes occure.
+
 private:
 	// problem dimension respec. number of variables
 	int n;
@@ -41,8 +45,8 @@ public:
 	// as permutation of location number
 	int* solution;
 	
-	// default Constructor, nothing is set
-	QAP_Problem() : EO<eoMinimizingFitness>() { 
+	// default Constructor, nothing is set, only null pointers
+	QAP_Problem() :  EO<eoMinimizingFitness>() { 
 		n = 0;
 		A = 0;
 		B = 0;
@@ -124,19 +128,6 @@ public:
 			solution[i] = _problem.solution[i];
 		}
 		
-		/*
-		// create and copy matrices A and B
-		A = new int *[n];
-		B = new int *[n];
-		for (unsigned i=0; i < n; i++) {
-			A[i] = new int [n];
-			B[i] = new int [n];
-			for (unsigned j=0; j < n; j++) {
-				A[i][j] = _problem.getA()[i][j];
-				B[i][j] = _problem.getB()[i][j];
-			}
-		}
-		*/
 		
 		A = _problem.getA();
 		B = _problem.getB();
@@ -170,12 +161,10 @@ public:
 		}
 	}
 	
-	/*QAP_Problem::Fitness QAP_Problem() {
-		return (*this).Fitness;
-	}*/
 	
 	// copy assignemnt Operator
 	// if existing object is assigend to value of current object
+	// highly duplicate code! -> also used in destucter and constructor
 	void operator= (QAP_Problem & _problem) {
 		// delete old values
 		delete[] solution;
@@ -226,11 +215,6 @@ public:
 		}
 	}
 	
-	/*
-	void QAP_Problem() {
-		return (*this).Fitness;
-	}
-	 */
 	
 	// subscripting operator acesses solution array, needed to copy solution
 	int& operator[] (unsigned i) {
@@ -254,10 +238,15 @@ public:
 	
 	// Method to print Solution Array
 	void printSolution() { 
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n-1; i++) {
 			std::cout << solution[i] << "-";
 		}
-		std::cout << std::endl;
+		std::cout << solution[n-1] << std::endl;
+	}
+	
+	// Method to print fitness --> convinience function
+	void printFitness() {
+		std::cout << "Fitness: " << fitness() << std::endl;
 	}
 	
 	// full Evaluation of the problem for a given solution,
@@ -293,7 +282,7 @@ public:
 			std::swap(solution[i], solution[random]);
 		}
 		
-		// evaluate the solution
+		// do not evaluate yet, only if needed -> method call from outside 
 		//fullEvaluation();
 	}
 };
